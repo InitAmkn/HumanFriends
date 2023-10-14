@@ -1,0 +1,41 @@
+﻿@using HumanFriends.Domain.Entity;
+@model List<Animal>
+
+@{
+    ViewData["Title"] = "title";
+    Layout = "_Layout";
+}
+<form asp-controller="Animal" asp-action="GetAnimals" method="get">
+    <div class="mb-3">
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Birthday</td>
+            <td>TypeAnimal</td>
+            <td>ApplicabilityAnimal</td>
+            <td>Delete</td>
+        </tr>
+    @foreach (var animal in Model)
+        {
+            <tr>
+                <td>@animal.ID</td>
+                <td>@animal.Name</td>
+                <td>@animal.Birthday</td>
+                <td>@animal.TypeAnimal.Name</td>
+                <td>@animal.TypeAnimal.ApplicabilityAnimal.Name</td>
+                <td>
+                    <form asp-controller="Animal" asp-action="Delete" method="post">
+
+                            <button type="submit" value="@animal.ID" class="btn btn-primary">
+                                <input asp-for="@animal.ID" hidden/>Delete
+                                </button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </table>
+        </div>
+</form>
+

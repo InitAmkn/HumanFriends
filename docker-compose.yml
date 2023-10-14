@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  humanfriends:
+    image: ${DOCKER_REGISTRY-}humanfriends
+    build:
+      context: .
+      dockerfile: HumanFriends/Dockerfile
